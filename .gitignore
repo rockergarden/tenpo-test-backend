@@ -34,7 +34,7 @@ target/
 .idea
 *.iws
 *.ipr
-target
+# target
 ### NetBeans ###
 nbproject/private/
 build/
