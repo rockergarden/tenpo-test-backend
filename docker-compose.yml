@@ -1,10 +1,18 @@
 version: "3.3"
 services:
-  db:
-    build:
-      context: ./docker-postgres
-      dockerfile: db.Dockerfile
-    volumes:
-      - ./var/pgdata:/var/lib/postgresql/data
+  app:
+    container_name: criverostenpo-api
+    image: spring-boot-criverostenpo/criverostenpo-api
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbpostgresql
+  dbpostgresql:
+    image: postgres
     ports:
       - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=public
